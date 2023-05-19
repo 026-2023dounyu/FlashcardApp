@@ -11,9 +11,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllMyCard",
+        query = "SELECT my FROM MyCard AS my ORDER BY my.id DESC"
+    )
+})
 @Table(name = "mycard")
 public class MyCard {
 
