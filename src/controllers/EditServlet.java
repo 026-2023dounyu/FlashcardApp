@@ -38,12 +38,14 @@ public class EditServlet extends HttpServlet {
 
         em.close();
 
-        // メッセージ情報とセッションIDをリクエストスコープに登録
+        // 単語情報とセッションIDをリクエストスコープに登録
         request.setAttribute("mycard", my);
         request.setAttribute("_token", request.getSession().getId());
 
-        // メッセージIDをセッションスコープに登録
-        request.getSession().setAttribute("mycard_id", my.getId());
+        // 単語IDをセッションスコープに登録
+        if(my != null) {
+            request.getSession().setAttribute("mycard_id", my.getId());
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/mycard/edit.jsp");
         rd.forward(request, response);
