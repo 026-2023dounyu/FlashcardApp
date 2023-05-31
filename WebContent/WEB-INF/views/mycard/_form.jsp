@@ -32,4 +32,6 @@
 <br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />
-<button type="submit">登録</button>
+<div class="text-center">
+  <button type="submit" class="btn btn-primary btn-sm" style="margin-right: 40%;">登録</button>
+</div>

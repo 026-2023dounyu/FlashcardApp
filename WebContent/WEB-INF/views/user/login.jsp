@@ -1,29 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:import url="../layout/app.jsp">
-    <c:param name="content">
-        <%---------------------------------ここまでテンプレ------------------------------- --%>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>My単語帳</title>
 
-        <h2>ログイン画面</h2>
+<link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css' />">
+<link rel="stylesheet" href="<c:url value='/css/reset.css' />">
+<link rel="stylesheet" href="<c:url value='/css/style.css' />">
+<link rel="stylesheet" href="<c:url value='/css/login.css' />">
 
-        <form action="./login" method="post">
-            <div>
-                <label>ユーザーID</label> <input type="number" name="id">
-            </div>
-            <div>
-                <label>パスワード</label> <input type="password" name="password">
-            </div>
-            <div>
-                <input type="hidden" name="_token" value="${_token}" />
-                <input type="submit" value="ログイン">
-            </div>
-        </form>
+</head>
+<body>
+    <div class="card text-center border-0" style="width: 30rem;">
+        <div class="card-header bg-primary text-white">ログイン</div>
+        <div class="card-body">
+            <form action="./login" method="post">
+                <br /> <label>ユーザーID</label> <input type="number" name="id">
+                <br />
+                <br /> <label>パスワード</label> <input type="password" name="password">
+                <br />
+                <br /> <input type="hidden" name="_token" value="${_token}" />
+                <button type="submit" class="btn btn-primary btn-sm">ログイン</button>
+            </form>
+            <p>
+                <a href="${pageContext.request.contextPath}/newAccount">新規ユーザー登録</a>
+            </p>
+        </div>
+    </div>
 
-        <p>
-            <a href="${pageContext.request.contextPath}/newAccount">ユーザー登録</a>
-        </p>
-
-
-    </c:param>
-</c:import>
+</body>
+</html>

@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+.card {
+    top: 50%;
+}
+.card-body{
+    padding-left: 30%;
+}
+a{
+    padding-left: 70%;
+}
+
 /* トグルスイッチ */
 .toggle_input {
   position: absolute;
@@ -39,12 +49,12 @@
 
 .toggle_input:checked + .toggle_label {
 
-  border: 3px solid #333333;
+  border: 3px solid #007bff;
 }
 
 .toggle_input:checked + .toggle_label:after {
   left: 32px;
-  background: #333333;
+  background: #007bff;
 }
 
 .toggle_button {
@@ -54,10 +64,6 @@
   margin: 0 auto; /* 画面中央からの横方向のマージンを0に設定 */
   float: left; /* 左寄せにするためにfloatを設定 */
   margin-right: 10px; /* オプション: 左側に余白を追加 */
-}
-
-label {
-  font-weight: bold;
 }
 
 .toggle_button label {
