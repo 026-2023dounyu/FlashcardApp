@@ -1,9 +1,5 @@
 package models;
 
-/*
- * mycard(マイページに表示する自分の単語帳テーブル)
- * の必要なデータを格納するクラス
- */
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -18,12 +14,12 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-            name = "getAllMyCard",
-            query = "SELECT my FROM MyCard AS my ORDER BY my.id DESC"
-            )
+        name = "getAllShareCard",
+        query = "SELECT share FROM ShareCard AS share ORDER BY share.id DESC"
+    )
 })
-@Table(name = "mycard")
-public class MyCard {
+@Table(name = "sharecard")
+public class ShareCard {
 
     /*
      * 単語カードID
@@ -32,6 +28,12 @@ public class MyCard {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    /*
+     * 登録ユーザー
+     */
+    @Column(name = "name", length = 255, nullable = false)
+    private String name;
 
     /*
      * 単語のジャンル
@@ -57,31 +59,20 @@ public class MyCard {
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
 
-    /*
-     * 更新日時
-     */
-    @Column(name = "updated_at", nullable = false)
-    private Timestamp updated_at;
-
-    /*
-     * 理解度(×：0, △：1, 〇：2)
-     */
-    @Column(name = "understand", nullable = false)
-    private Integer understand;
-
-    /*
-     * 共有するかどうか
-     * しない→0、する→1
-     */
-    @Column(name = "share" , nullable = false)
-    private Integer share;
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -114,29 +105,5 @@ public class MyCard {
 
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
-    }
-
-    public Timestamp getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public Integer getUnderstand() {
-        return understand;
-    }
-
-    public void setUnderstand(Integer understand) {
-        this.understand = understand;
-    }
-
-    public Integer getShare() {
-        return share;
-    }
-
-    public void setShare(Integer share) {
-        this.share = share;
     }
 }

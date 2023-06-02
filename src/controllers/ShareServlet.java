@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,30 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.MyCard;
+import models.ShareCard;
 import utils.DBUtil;
 
-@WebServlet("/show")
-public class ShowServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@WebServlet("/share")
+public class ShareServlet extends HttpServlet {
+        private static final long serialVersionUID = 1L;
 
-    public ShowServlet() {
+    public ShareServlet() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        // 該当のIDの単語1件のみをデータベースから取得
-        MyCard my = em.find(MyCard.class, Integer.parseInt(request.getParameter("id")));
+        List<ShareCard> sharecard = em.createNamedQuery("getAllShareCard", ShareCard.class).getResultList();
 
         em.close();
 
-        // メッセージデータをリクエストスコープにセットしてshow.jspを呼び出す
-        request.setAttribute("mycard", my);
+        request.setAttribute("sharecard", sharecard);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/mycard/show.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/sharecard/share.jsp");
         rd.forward(request, response);
     }
-
 }
