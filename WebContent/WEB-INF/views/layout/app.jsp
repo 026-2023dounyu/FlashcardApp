@@ -27,14 +27,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item active"><a class="nav-link"
-                            href="${pageContext.request.contextPath}/index">ホーム</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                            href="${pageContext.request.contextPath}/index">単語一覧</a>
                         <li class="nav-item"><a class="nav-link"
                             href="${pageContext.request.contextPath}/new">新規単語登録</a></li>
                         <li class="nav-item"><a class="nav-link"
                             href="${pageContext.request.contextPath}/flashcard">単語帳</a></li>
                         <li class="nav-item"><a class="nav-link"
-                            href="${pageContext.request.contextPath}/testhome">テスト</a></li>
+                            href="${pageContext.request.contextPath}/testHome">テスト</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                            href="${pageContext.request.contextPath}/share">みんなの単語</a></li>
                         <li class="nav-item"><a class="nav-link"
                             href="${pageContext.request.contextPath}/logout">ログアウト</a></li>
                     </ul>

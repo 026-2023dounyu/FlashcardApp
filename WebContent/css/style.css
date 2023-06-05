@@ -1,11 +1,13 @@
 @CHARSET "UTF-8";
 
-html{
+html {
     background-color: #F2F2F2;
 }
+
 body {
     color: #333333;
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
+        Arial, sans-serif;
     background-color: #F2F2F2;
     /*background-color: #f1f7fc;*/
 }
@@ -44,23 +46,8 @@ a {
     color: #24738e;
 }
 
-table, tr, th, td {
-    border: 1px solid #cccccc;
-}
-
-table {
-    width: 100%;
-    table-layout: fixed;
-}
-
-th {
-    width: 26%;
-    padding: 10px 2%;
-}
-
-td {
-    width: 66%;
-    padding: 10px 2%;
+label {
+    font-weight: bold;
 }
 
 button {
@@ -85,16 +72,15 @@ button {
 /* nav-itemの文字色 */
 .navbar .navbar-nav .nav-link {
     color: whitesmoke;
-}
-/* nav-item activeの文字色 */
-.navbar .navbar-nav .active > .nav-link {
-    color: whitesmoke;
+    padding-left: 20px;
 }
 /* nav-item:focus、nav-item:hoverの文字色 */
-.navbar .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: rgba(0,255,255,1);
+.navbar .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover
+    {
+    color: rgba(0, 255, 255, 1);
 }
-.navbar-brand{
+
+.navbar-brand {
     padding-left: 20px;
     padding-right: 30px;
     color: whitesmoke;

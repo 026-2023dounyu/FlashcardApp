@@ -19,8 +19,23 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllMyCard",
-            query = "SELECT my FROM MyCard AS my ORDER BY my.word"
-            )
+            query = "SELECT my FROM MyCard AS my ORDER BY my.word "
+            ),
+    @NamedQuery(
+            name = "getItCard",
+            query = "SELECT my FROM MyCard AS my WHERE my.understand < 2 AND my.type='IT'"
+            ),
+    @NamedQuery(
+            name = "getInsuranceCard",
+            query = "SELECT my FROM MyCard AS my WHERE my.understand < 2 AND my.type='保険'"
+            ),
+    @NamedQuery(
+            name = "getBusinessCard",
+            query = "SELECT my FROM MyCard AS my WHERE my.understand < 2 AND my.type='ビジネス'"
+            ),
+    @NamedQuery(
+            name = "getOthersCard",
+            query = "SELECT my FROM MyCard AS my WHERE my.understand < 2 AND my.type='その他'"          )
 })
 @Table(name = "mycard")
 public class MyCard {

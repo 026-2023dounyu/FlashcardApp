@@ -7,40 +7,43 @@
         <c:choose>
             <c:when test="${mycard != null}">
 
-                <h2>id : ${mycard.id} の単語詳細ページ</h2>
+                <table class="table">
 
-                <table>
                     <tbody>
                         <tr>
-                            <th>単語ジャンル</th>
+                            <th scope="row">1</th>
+                            <td>単語ジャンル</td>
                             <td><c:out value="${mycard.type}" /></td>
                         </tr>
-
                         <tr>
-                            <th>単語</th>
+                            <th scope="row">2</th>
+                            <td>単語名</td>
                             <td><c:out value="${mycard.word}" /></td>
                         </tr>
-
                         <tr>
-                            <th>単語の意味</th>
+                            <th scope="row">3</th>
+                            <td>意味</td>
                             <td><c:out value="${mycard.mean}" /></td>
                         </tr>
-
                         <tr>
-                            <th>作成日時</th>
-                            <td><fmt:formatDate value="${mycard.created_at}"
-                                    pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                            <th scope="row">4</th>
+                            <td>理解度</td>
+                            <td><c:out value="${mycard.understand}" /></td>
                         </tr>
-
                         <tr>
-                            <th>更新日時</th>
-                            <td><fmt:formatDate value="${mycard.updated_at}"
-                                    pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                            <th scope="row">5</th>
+                            <td>共有</td>
+                            <td><c:out value="${mycard.share}" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>作成日</td>
+                            <td><fmt:formatDate value="${mycard.created_at}"
+                                    pattern="yyyy-MM-dd" /></td>
                         </tr>
 
                     </tbody>
                 </table>
-
                 <p>
                     <c:if test="${mycard.share == 1}">
                             みんなの単語帳に共有済み
