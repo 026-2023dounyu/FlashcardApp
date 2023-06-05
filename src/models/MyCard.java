@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllMyCard",
-            query = "SELECT my FROM MyCard AS my ORDER BY my.id DESC"
+            query = "SELECT my FROM MyCard AS my ORDER BY my.word"
             )
 })
 @Table(name = "mycard")
