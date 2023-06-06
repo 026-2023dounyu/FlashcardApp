@@ -35,6 +35,6 @@
             </div><br>
             <input type="submit" class="btn btn-primary" value="テスト開始">
         </form>
-        <p><a href="${pageContext.request.contextPath}/index">単語一覧に戻る</a></p>
+        <p><a href="${pageContext.request.contextPath}/index">My単語一覧に戻る</a></p>
     </c:param>
 </c:import>

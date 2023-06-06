@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
         name = "getAllShareCard",
-        query = "SELECT share FROM ShareCard AS share ORDER BY share.id DESC"
+        query = "SELECT share FROM ShareCard AS share ORDER BY share.type, share.word"
     )
 })
 @Table(name = "sharecard")

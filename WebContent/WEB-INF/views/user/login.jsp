@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="card text-center border-0" style="width: 30rem;">
-        <div class="card-header bg-primary text-white">ログイン</div>
+        <div class="card-header bg-primary text-white">My単語帳　ログイン</div>
         <div class="card-body">
             <form action="./login" method="post">
                 <br /> <label>ユーザーID</label> <input type="number" name="id">
