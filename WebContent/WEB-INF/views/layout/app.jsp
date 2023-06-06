@@ -20,6 +20,7 @@
                 style="background: radial-gradient(circle, rgba(58, 99, 255, 1), rgba(42, 179, 252, 1) 90%);">
                 <a class="navbar-brand"
                     href="${pageContext.request.contextPath}/index">My単語帳</a>
+                <a><c:out value="${name}" /></a>
                 <button class="navbar-toggler" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>

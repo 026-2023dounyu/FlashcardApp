@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.User;
 import utils.DBUtil;
@@ -54,7 +55,7 @@ public class LoginServlet extends HttpServlet {
             List<User> searchUser = em.createNamedQuery("searchUser", User.class).setParameter("id", id).setParameter("password", password).getResultList();
 
             if (searchUser.size() == 0 ) {
-                System.out.println("ユーザー名、またはパスワードが違います。");
+                System.out.println("ユーザーID、またはパスワードが違います。");
                 response.sendRedirect(request.getContextPath() + "/login");
             }else if(searchUser.size() == 1){
 
@@ -63,6 +64,13 @@ public class LoginServlet extends HttpServlet {
                 if(loginUser != null) {
                     loginUser.setLogin(1);
                     em.persist(loginUser);
+                    List<User> searchSameId = em.createNamedQuery("searchSameId", User.class).setParameter("id", id).getResultList();
+                    HttpSession userInfoSession = request.getSession();
+                    User userInfo = searchSameId.get(0);
+                    userInfoSession.setAttribute("id", userInfo.getId());
+                    userInfoSession.setAttribute("name", userInfo.getName());
+                    userInfoSession.setAttribute("login", userInfo.getLogin());
+
                 }else {
                     System.out.println("一致するユーザーIDが見つかりませんでした。");
                 }

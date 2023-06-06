@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.MyCard;
 import utils.DBUtil;
@@ -27,9 +28,13 @@ public class IndexServlet extends HttpServlet {
 
         List<MyCard> mycard = em.createNamedQuery("getAllMyCard", MyCard.class).getResultList();
 
+        HttpSession userInfoSession = request.getSession();
+        String loginName = (String) userInfoSession.getAttribute("name");
+
         em.close();
 
         request.setAttribute("mycard", mycard);
+        request.setAttribute("name", loginName);
 
         // フラッシュメッセージがセッションスコープにセットされていたら
         // リクエストスコープに保存する（セッションスコープからは削除）
