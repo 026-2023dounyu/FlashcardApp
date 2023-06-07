@@ -14,9 +14,13 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-        name = "getAllShareCard",
-        query = "SELECT share FROM ShareCard AS share ORDER BY share.type, share.word"
-    )
+            name = "getAllShareCard",
+            query = "SELECT share FROM ShareCard AS share ORDER BY share.type, share.word"
+            ),
+    @NamedQuery(
+            name = "getShareCard",
+            query = "SELECT share FROM ShareCard AS share WHERE share.name = :name AND share.word = :word AND share.mean = :mean"
+            )
 })
 @Table(name = "sharecard")
 public class ShareCard {

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.MyCard;
 import models.ShareCard;
@@ -72,27 +73,48 @@ public class UpdateServlet extends HttpServlet {
 
 
             Integer shareFlag = 0;
-            my.setShare(shareFlag);
 
             /*
              * 共有ボタンが押されたら
              * ・mycardテーブルのshareを1に変更
              * ・この単語の情報をsharecardテーブルに追加
              */
-            if(request.getParameter("share") != null) {
-                shareFlag = 1;
-                my.setShare(shareFlag);
 
-                ShareCard share = new ShareCard();
+            //もともと共有していない場合
+            if(my.getShare()==0) {
+                //共有ボタンが押されたら
+                if(request.getParameter("share") != null) {
+                    shareFlag = 1;
+                    my.setShare(shareFlag);
 
-                share.setType(type);
-                share.setWord(word);
+                    HttpSession userInfoSession = request.getSession();
+                    String name = (String) userInfoSession.getAttribute("name");
 
-                share.setMean(mean);
-                share.setCreated_at(currentTime);
-                share.setName("ログイン情報からとってくるユーザー名");
+                    ShareCard share = new ShareCard();
+                    share.setType(type);
+                    share.setWord(word);
+                    share.setMean(mean);
+                    share.setCreated_at(currentTime);
+                    share.setName(name);
 
-                em.persist(share);
+                    em.persist(share);
+                }else {
+                    my.setShare(shareFlag);
+                }
+            }else { //もともと共有していた場合
+                if(request.getParameter("share") != null) { //共有ボタンが押されたら
+                    shareFlag = 1;
+                    my.setShare(shareFlag);
+                }else {
+                    my.setShare(shareFlag);
+
+                    ShareCard share = em.find(ShareCard.class, (Integer)(request.getSession().getAttribute("sharecard_id")));
+                    if(share != null) {
+                        em.getTransaction().begin();
+                        em.remove(share);
+                        em.getTransaction().commit();
+                    }
+                }
             }
 
             // データベースを更新

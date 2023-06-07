@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.MyCard;
 import models.ShareCard;
@@ -76,12 +77,17 @@ public class CreateServlet extends HttpServlet {
 
                 ShareCard share = new ShareCard();
 
+                HttpSession userInfoSession = request.getSession();
+                String name = (String) userInfoSession.getAttribute("name");
+
                 share.setType(type);
                 share.setWord(word);
 
                 share.setMean(mean);
                 share.setCreated_at(currentTime);
-                share.setName("ログイン情報からとってくるユーザー名");
+                share.setName(name);
+                System.out.println(name);
+
 
                 em.persist(share);
             }
