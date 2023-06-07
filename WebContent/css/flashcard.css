@@ -1,26 +1,19 @@
 @CHARSET "UTF-8";
 
-body {
-    /*background: #F2F2F2;*/
-    background: gray;
-}
-
 .card {
     width: 41rem;
-    height: 22rem;
-    background: #D3DEF1;
-    /* 水平方向の中央揃え */
-    margin: 0 auto;
-    /* 垂直方向の中央揃え */
-    display: flex;
-    align-items: center;
+  height: 22rem;
+  background: #D3DEF1;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
+.card-title{
+    text-align:center;
+    padding-top:150px;
+    max-width: 100%;
 
-.card-title {
-    text-align: center;
-    padding: 140px 0;
 }
-
 .card_reverse {
     position: absolute;
     top: 0;
@@ -31,33 +24,39 @@ body {
 .is-surface .card_surface {
     opacity: 1;
     transform: rotateY(0deg);
-    transition: opacity 100ms 150ms, transform 300ms 150ms;
+    transition:
+        opacity 100ms 150ms,
+        transform 300ms 150ms;
 }
-
 .is-surface .card_reverse {
     opacity: 0;
     transform: rotateY(90deg);
-    transition: opacity 50ms 200ms, transform 300ms;
+    transition:
+        opacity 50ms 200ms,
+        transform 300ms;
 }
 
 /* 裏面の表示 */
 .is-reverse .card_surface {
     opacity: 0;
-    transform: rotateY(90deg);
-    transition: opacity 50ms 200ms, transform 300ms;
+    transform:rotateY(90deg);
+    transition:
+        opacity 50ms 200ms,
+        transform 300ms;
 }
-
 .is-reverse .card_reverse {
     opacity: 1;
-    transform: rotateY(0deg);
-    transition: opacity 100ms 150ms, transform 300ms 150ms;
+    transform:rotateY(0deg);
+    transition:
+        opacity 100ms 150ms,
+        transform 300ms 150ms;
 }
 /* 〇△×ボタン */
 .button-group {
     display: flex;
     padding-left: 40%;
-}
 
+}
 .button {
     display: flex;
     align-items: center;
@@ -68,18 +67,17 @@ body {
     border-radius: 50%;
     font-size: 24px;
     cursor: pointer;
-    margin-right: 60px;
+    margin-right: 58px;
     color: white;
     background-color: gray;
     font-weight: bold;
 }
-
 .button.active {
     color: gray;
     background-color: white;
 }
 
-.card-index {
+.card-index{
     color: whitesmoke;
-    padding-left: 71%;
+    padding-left: 75%;
 }

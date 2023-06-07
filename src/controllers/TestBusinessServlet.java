@@ -35,7 +35,7 @@ public class TestBusinessServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        List<MyCard> mycard = em.createNamedQuery("getBusinessCard", MyCard.class).getResultList();
+        List<MyCard> mycard = em.createNamedQuery("getBusinessTest", MyCard.class).getResultList();
 
         // リストの要素をランダムに並び替える
         Collections.shuffle(mycard);
@@ -43,14 +43,8 @@ public class TestBusinessServlet extends HttpServlet {
         request.setAttribute("mycard", mycard);
 
         String randomCard1 = mycard.get(5).getWord();
-        System.out.println("ランダムカード"+randomCard1);
         String randomCard2 = mycard.get(6).getWord();
-        System.out.println("ランダムカード"+randomCard2);
         String randomCard3 = mycard.get(7).getWord();
-
-        System.out.println("ランダムカード"+randomCard1);
-        System.out.println("ランダムカード"+randomCard2);
-        System.out.println("ランダムカード"+randomCard3);
 
         // requestに属性を設定する
         request.setAttribute("randomCard1", randomCard1);

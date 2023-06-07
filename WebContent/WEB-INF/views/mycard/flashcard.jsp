@@ -2,21 +2,27 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html lang="ja">
+<c:import url="../layout/app.jsp">
+    <c:param name="content">
+        <style>
+html {
+    background: gray;
+}
 
-<head>
-<meta charset="UTF-8">
-<title>単語帳</title>
-<link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css' />">
-<link rel="stylesheet" href="<c:url value='/css/flashcard.css' />">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <div id="wrapper">
-        <div id="header">
-            <br> <br> <br> <br>
-        </div>
+body {
+    /*background: #F2F2F2;*/
+    background: gray;
+}
+
+h3 {
+    font-size: 40px
+}
+
+h2 {
+    font-size: 30px
+}
+</style>
+        <br>
         <div id="carouselExampleControlsNoTouching" class="carousel slide"
             data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
@@ -27,12 +33,12 @@
                             <div class="carousel-item active">
                                 <div class="card is-surface">
                                     <div class="card_surface">
-                                        <h1 class="card-title">
+                                        <h3 class="card-title fw-bolder">
                                             <c:out value="${mycard.word}" />
-                                        </h1>
+                                        </h3>
                                     </div>
                                     <div class="card_reverse">
-                                        <h2 class="card-title fw-lighter">
+                                        <h2 class="card-title">
                                             <c:out value="${mycard.mean}" />
                                         </h2>
                                     </div>
@@ -53,16 +59,15 @@
                                         onclick="handleButtonClick(this)">&#10005;</button>
                                 </div>
                                 <input type="hidden" name="_token" value="${_token}" />
-                                <button type="submit" class="btn btn-light">学習終了</button>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <div class="carousel-item">
                                 <div class="card is-surface">
                                     <div class="card_surface">
-                                        <h1 class="card-title">
+                                        <h3 class="card-title fw-bolder">
                                             <c:out value="${mycard.word}" />
-                                        </h1>
+                                        </h3>
                                     </div>
                                     <div class="card_reverse">
                                         <h2 class="card-title fw-lighter">
@@ -104,34 +109,47 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </div>
+        <div class="text-center" style="padding-top: 20px;">
+            <button onclick="history.back()" class="btn btn-light btn-sm">学習終了</button>
+        </div>
 
-    <script>
-        $(function() {
-            $('.card').on('click', function() {
-                $(this).toggleClass('is-surface').toggleClass('is-reverse');
+        <script>
+            $(function() {
+                $('.card').on(
+                        'click',
+                        function() {
+                            $(this).toggleClass('is-surface').toggleClass(
+                                    'is-reverse');
+                        });
             });
-        });
-    </script>
+        </script>
 
-    <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var buttons = document.getElementsByClassName("button");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener("click", function() {
-        var currentButton = this;
-        var currentButtonClass = currentButton.classList[1];
-        var buttons = document.getElementsByClassName("button");
-        for (var j = 0; j < buttons.length; j++) {
-          buttons[j].classList.remove("active");
-        }
-        currentButton.classList.add("active");
-      });
-    }
-  });
-</script>
+        <script>
+            document
+                    .addEventListener(
+                            "DOMContentLoaded",
+                            function() {
+                                var buttons = document
+                                        .getElementsByClassName("button");
+                                for (var i = 0; i < buttons.length; i++) {
+                                    buttons[i]
+                                            .addEventListener(
+                                                    "click",
+                                                    function() {
+                                                        var currentButton = this;
+                                                        var currentButtonClass = currentButton.classList[1];
+                                                        var buttons = document
+                                                                .getElementsByClassName("button");
+                                                        for (var j = 0; j < buttons.length; j++) {
+                                                            buttons[j].classList
+                                                                    .remove("active");
+                                                        }
+                                                        currentButton.classList
+                                                                .add("active");
+                                                    });
+                                }
+                            });
+        </script>
 
-    <script src="<c:url value='/js/jquery-3.7.0.slim.min.js' />"></script>
-    <script src="<c:url value='/js/bootstrap.bundle.min.js' />"></script>
-</body>
-</html>
+    </c:param>
+</c:import>
