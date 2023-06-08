@@ -26,10 +26,10 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        List<MyCard> mycard = em.createNamedQuery("getAllMyCard", MyCard.class).getResultList();
-
         HttpSession userInfoSession = request.getSession();
         String loginName = (String) userInfoSession.getAttribute("name");
+        List<MyCard> mycard = em.createNamedQuery("getAllMyCard", MyCard.class).setParameter("name", loginName).getResultList();
+
 
         em.close();
 

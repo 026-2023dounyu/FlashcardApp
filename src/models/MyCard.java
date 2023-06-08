@@ -18,8 +18,12 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-            name = "getAllMyCard",
+            name = "getAllUserCard",
             query = "SELECT my FROM MyCard AS my ORDER BY my.word "
+            ),
+    @NamedQuery(
+            name = "getAllMyCard",
+            query = "SELECT my FROM MyCard  AS my WHERE my.name = :name"
             ),
     @NamedQuery(
             name = "getItTest",
@@ -84,6 +88,12 @@ public class MyCard {
     private String mean;
 
     /*
+     * 単語の作成者
+     */
+    @Column(name = "name", length = 255, nullable = false)
+    private String name;
+
+    /*
      * 作成日時
      */
     @Column(name = "created_at", nullable = false)
@@ -138,6 +148,14 @@ public class MyCard {
 
     public void setMean(String mean) {
         this.mean = mean;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Timestamp getCreated_at() {

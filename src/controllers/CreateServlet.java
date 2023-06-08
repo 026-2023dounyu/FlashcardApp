@@ -44,6 +44,10 @@ public class CreateServlet extends HttpServlet {
             String mean = request.getParameter("mean");
             my.setMean(mean);
 
+            HttpSession userInfoSession = request.getSession();
+            String loginName = (String) userInfoSession.getAttribute("name");
+            my.setName(loginName);
+
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             my.setCreated_at(currentTime);
             my.setUpdated_at(currentTime);
@@ -80,16 +84,13 @@ public class CreateServlet extends HttpServlet {
 
                 ShareCard share = new ShareCard();
 
-                HttpSession userInfoSession = request.getSession();
-                String name = (String) userInfoSession.getAttribute("name");
-
                 share.setType(type);
                 share.setWord(word);
 
                 share.setMean(mean);
                 share.setCreated_at(currentTime);
-                share.setName(name);
-                System.out.println(name);
+                share.setName(loginName);
+                System.out.println(loginName);
 
 
                 em.persist(share);

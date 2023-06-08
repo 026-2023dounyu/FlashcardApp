@@ -48,6 +48,10 @@
                             </c:choose>
                         </tr>
                         <tr>
+                            <td>作成者</td>
+                            <td><c:out value="${mycard.name}" /></td>
+                        </tr>
+                        <tr>
                             <td>作成日</td>
                             <td><fmt:formatDate value="${mycard.created_at}"
                                     pattern="yyyy-MM-dd" /></td>
