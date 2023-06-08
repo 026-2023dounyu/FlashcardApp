@@ -31,7 +31,7 @@ h2 {
                     <c:choose>
                         <c:when test="${s.first == 'true'}">
                             <div class="carousel-item active">
-                                <div class="card is-surface">
+                                <div class="card  is-surface">
                                     <div class="card_surface">
                                         <h3 class="card-title fw-bolder">
                                             <c:out value="${mycard.word}" />
@@ -44,7 +44,7 @@ h2 {
                                     </div>
                                 </div>
                                 <div class="card-index">${s.count}/${cardCount}</div>
-                                <div class="button-group">
+                                <div class="button-group" style="margin-left: 5%;">
                                     <button
                                         class="button ${mycard.understand == '2' ? 'active' : ''}"
                                         type="button" name="understand" value="2"
@@ -113,43 +113,34 @@ h2 {
             <button onclick="history.back()" class="btn btn-light btn-sm">学習終了</button>
         </div>
 
+
         <script>
-            $(function() {
-                $('.card').on(
-                        'click',
-                        function() {
-                            $(this).toggleClass('is-surface').toggleClass(
-                                    'is-reverse');
-                        });
+        $(function() {
+            $('.card').on('click', function() {
+                $(this).toggleClass('is-surface').toggleClass('is-reverse');
             });
-        </script>
+        });
+    </script>
 
         <script>
-            document
-                    .addEventListener(
-                            "DOMContentLoaded",
-                            function() {
-                                var buttons = document
-                                        .getElementsByClassName("button");
-                                for (var i = 0; i < buttons.length; i++) {
-                                    buttons[i]
-                                            .addEventListener(
-                                                    "click",
-                                                    function() {
-                                                        var currentButton = this;
-                                                        var currentButtonClass = currentButton.classList[1];
-                                                        var buttons = document
-                                                                .getElementsByClassName("button");
-                                                        for (var j = 0; j < buttons.length; j++) {
-                                                            buttons[j].classList
-                                                                    .remove("active");
-                                                        }
-                                                        currentButton.classList
-                                                                .add("active");
-                                                    });
-                                }
-                            });
-        </script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var buttons = document.getElementsByClassName("button");
 
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function() {
+        var currentButton = this;
+        var currentButtonClass = currentButton.classList[1];
+
+        var buttons = document.getElementsByClassName("button");
+        for (var j = 0; j < buttons.length; j++) {
+          buttons[j].classList.remove("active");
+        }
+
+        currentButton.classList.add("active");
+      });
+    }
+  });
+</script>
     </c:param>
 </c:import>
+

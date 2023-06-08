@@ -2,10 +2,8 @@ package controllers;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import models.MyCard;
 import models.ShareCard;
-import models.validators.FlashcardValidator;
 import utils.DBUtil;
 
 /**
@@ -119,33 +116,17 @@ public class UpdateServlet extends HttpServlet {
                     }
                 }
             }
+            // データベースを更新
+            em.getTransaction().begin();
+            em.getTransaction().commit();
+            request.getSession().setAttribute("flush", "更新が完了しました。");
+            em.close();
 
-            // バリデーションを実行してエラーがあったら新規登録のフォームに戻る
-            List<String> errors = FlashcardValidator.validate(my);
-            if(errors.size() > 0) {
-                em.close();
+            // セッションスコープ上の不要になったデータを削除
+            request.getSession().removeAttribute("mycard_id");
 
-                // フォームに初期値を設定、さらにエラーメッセージを送る
-                request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("mycard", my);
-                request.setAttribute("errors", errors);
-
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/mycard/new.jsp");
-                rd.forward(request, response);
-            } else {
-                // データベースに保存
-                em.getTransaction().begin();
-                em.persist(my);
-                em.getTransaction().commit();
-                request.getSession().setAttribute("flush", "登録が完了しました。");
-                em.close();
-
-                // セッションスコープ上の不要になったデータを削除
-                request.getSession().removeAttribute("mycard_id");
-                request.getSession().removeAttribute("sharecard_id");
-                // indexページへリダイレクト
-                response.sendRedirect(request.getContextPath() + "/index");
-            }
+            // indexページへリダイレクト
+            response.sendRedirect(request.getContextPath() + "/index");
         }
     }
 }

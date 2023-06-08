@@ -9,7 +9,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2 class="text-decoration-underline">${name}の単語一覧</h2>
+        <h2>${name} の単語一覧</h2>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-3 mb-4">
