@@ -37,13 +37,13 @@
                             </c:choose>
                         </tr>
                         <tr>
-                            <td>共有の有無</td>
+                            <td>みんなの単語</td>
                             <c:choose>
                                 <c:when test="${mycard.share == '0'}">
-                                    <td>無</td>
+                                    <td>共有なし</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>有</td>
+                                    <td>共有済み</td>
                                 </c:otherwise>
                             </c:choose>
                         </tr>

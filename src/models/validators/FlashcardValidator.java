@@ -25,10 +25,10 @@ public class FlashcardValidator {
             errors.add(type_error);
         }
 
-        /* String understand_error = validateUnderstand(my.getUnderstand());
+        String understand_error = validateUnderstand(my.getUnderstand().toString());
         if(!understand_error.equals("")) {
             errors.add(understand_error);
-        }*/
+        }
 
         return errors;
     }
@@ -61,12 +61,12 @@ public class FlashcardValidator {
     }
 
  // 理解度の必須入力チェック
- /*private static String validateUnderstand(String understand) {
+ private static String validateUnderstand(String understand) {
      if(understand == null || understand.equals("")) {
          return "理解度を選択してください。";
      }
 
      return "";
- }*/
+ }
 
 }
